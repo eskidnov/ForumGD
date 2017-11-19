@@ -3,6 +3,8 @@
 import telebot
 import config
 import utils
+import socket
+import os
 
 bot = telebot.TeleBot(config.token)
 
@@ -288,8 +290,17 @@ def add_speaker_photo(message):
     print(message.photo[0].file_id)
 
 if __name__ == '__main__':
-    updates = bot.get_updates()
-    updates = bot.get_updates(1234,100,20)
+    sock = socket.socket()
+    port = os.environ["PORT"]
+    sock.bind(('', port))
+    sock.listen(1)
+    conn, addr = sock.accept()
+    while True:
+    data = conn.recv(1024)
+    if not data:
+        break
+    conn.send(data.upper())
+    conn.close()
     
     main_menu_keyboard = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
     buttons = (telebot.types.KeyboardButton(text=button_text) for button_text in config.main_menu_keyboard
