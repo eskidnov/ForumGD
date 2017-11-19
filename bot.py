@@ -288,6 +288,9 @@ def add_speaker_photo(message):
     print(message.photo[0].file_id)
 
 if __name__ == '__main__':
+    updates = tb.get_updates()
+    updates = tb.get_updates(1234,100,20)
+    
     main_menu_keyboard = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
     buttons = (telebot.types.KeyboardButton(text=button_text) for button_text in config.main_menu_keyboard
                if config.main_menu_keyboard.index(button_text) < 6)
