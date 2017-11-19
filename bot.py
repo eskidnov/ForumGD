@@ -291,7 +291,7 @@ def add_speaker_photo(message):
 
 if __name__ == '__main__':
     sock = socket.socket()
-    port = os.environ["PORT"]
+    port = int(os.environ["PORT"])
     sock.bind(('', port))
     sock.listen(1)
     conn, addr = sock.accept()
