@@ -296,10 +296,10 @@ if __name__ == '__main__':
     sock.listen(1)
     conn, addr = sock.accept()
     while True:
-    data = conn.recv(1024)
-    if not data:
-        break
-    conn.send(data.upper())
+        data = conn.recv(1024)
+        if not data:
+            break
+        conn.send(data.upper())
     conn.close()
     
     main_menu_keyboard = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
